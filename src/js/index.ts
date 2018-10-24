@@ -9,6 +9,9 @@ import axios, {
          vendor: string;
          price: number;
      }
+
+     let divElement : HTMLDivElement = <HTMLDivElement> document.getElementById("content");
+
     let buttonElement : HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
     buttonElement.addEventListener("click",showAllCars);
 
@@ -19,12 +22,18 @@ axios.get<Icar[]>(uri)
 
     let result : string = "<ol>"
     response.data.forEach((car : Icar) => {
-        result += "<li>"+ car.model + car.vendor + car.price.toString() + "</li>"
+        result += "<li>"+ car.model + " " + car.vendor + " " + "price:" + car.price.toString() + "</li>"
     });
 result += "<ol>"
+divElement.innerHTML = result;
+
 }
 )
-.catch
+.catch(function(error : AxiosError): void{
+    if (error.response) {
+        divElement.innerHTML = error.message;
+    }
+}))
 
 
     }
