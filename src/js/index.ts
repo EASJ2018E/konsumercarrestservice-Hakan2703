@@ -9,3 +9,22 @@ import axios, {
          vendor: string;
          price: number;
      }
+    let buttonElement : HTMLButtonElement = <HTMLButtonElement> document.getElementById("getAllButton")
+    buttonElement.addEventListener("click",showAllCars);
+
+    function showAllCars():void {
+        let uri : string = "http://rest-pele-easj-dk.azurewebsites.net/api/Cars"
+axios.get<Icar[]>(uri)
+.then(function(response: AxiosResponse<Icar[]>):void{
+
+    let result : string = "<ol>"
+    response.data.forEach((car : Icar) => {
+        result += "<li>"+ car.model + car.vendor + car.price.toString() + "</li>"
+    });
+result += "<ol>"
+}
+)
+.catch
+
+
+    }
